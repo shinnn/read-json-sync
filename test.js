@@ -1,6 +1,6 @@
 'use strict';
 
-var readJsonSync = require('require-main')();
+var readJsonSync = require('./');
 var test = require('tape');
 
 test('readJsonSync()', function(t) {

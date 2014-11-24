@@ -4,7 +4,9 @@ var readJsonSync = require('./');
 var test = require('tape');
 
 test('readJsonSync()', function(t) {
-  t.plan(6);
+  t.plan(8);
+
+  t.equal(readJsonSync.name, 'readJsonSync', 'should have a function name.');
 
   t.equal(
     readJsonSync('package.json').name, 'read-json-sync',
@@ -28,12 +30,17 @@ test('readJsonSync()', function(t) {
   );
 
   t.throws(
-    readJsonSync.bind(null, 'foo'), /ENOENT/,
+    readJsonSync.bind(null, 'foo', null), /ENOENT/,
     'should throw an error when the file doesn\'t exist.'
   );
 
   t.throws(
-    readJsonSync.bind(null, 'index.js'), /Unexpected token/,
+    readJsonSync.bind(null, 'node_modules', {}), /EISDIR/,
+    'should throw an error when the path is a directory.'
+  );
+
+  t.throws(
+    readJsonSync.bind(null, 'index.js', 'utf8'), /Unexpected token/,
     'should throw an error when the file is not a valid JSON.'
   );
 });

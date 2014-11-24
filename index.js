@@ -9,7 +9,6 @@ var fs = require('fs');
 var bomRegex = /^\ufeff/g;
 
 module.exports = function readJsonSync(filePath, options) {
-  options = options || {};
   var buf = fs.readFileSync(filePath, options);
   return JSON.parse(buf.toString().replace(bomRegex, ''));
 };

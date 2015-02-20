@@ -8,9 +8,9 @@
     "url": "https://github.com/shinnn"
   },
   "scripts": {
-    "pretest": "eslint *.js & jscs *.js",
-    "test": "node test.js | tap-spec",
-    "coverage": "istanbul cover test.js",
+    "pretest": "jscs index.js test/*.js && eslint index.js test/*.js",
+    "test": "node test/test.js | tap-spec",
+    "coverage": "istanbul cover test/test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
   "licenses": [
@@ -20,8 +20,7 @@
     }
   ],
   "files": [
-    "index.js",
-    "LICENSE"
+    "index.js"
   ],
   "keywords": [
     "json",
@@ -44,8 +43,8 @@
   },
   "jscsConfig": {
     "preset": "google",
-    "excludeFiles": [
-      "{coverage,node_modules}/**"
-    ]
+    "maximumLineLength": 98,
+    "requireBlocksOnNewline": true,
+    "validateLineBreaks": "LF"
   }
 }

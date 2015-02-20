@@ -4,11 +4,8 @@
 */
 'use strict';
 
-var fs = require('fs');
-
-var bomRegex = /^\ufeff/g;
+var fs = require('graceful-fs');
 
 module.exports = function readJsonSync(filePath, options) {
-  var buf = fs.readFileSync(filePath, options);
-  return JSON.parse(buf.toString().replace(bomRegex, ''));
+  return JSON.parse(String(fs.readFileSync(filePath, options)).replace(/^\ufeff/g, ''));
 };

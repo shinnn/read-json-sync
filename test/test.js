@@ -4,7 +4,7 @@ var readJsonSync = require('..');
 var test = require('tape');
 
 test('readJsonSync()', function(t) {
-  t.plan(8);
+  t.plan(9);
 
   t.equal(readJsonSync.name, 'readJsonSync', 'should have a function name.');
 
@@ -14,6 +14,12 @@ test('readJsonSync()', function(t) {
     readJsonSync('test/fixture-ucs2.json', {encoding: 'ucs2'}),
     [2],
     'should support fs.readFile options.'
+  );
+
+  t.deepEqual(
+    readJsonSync('test/fixture-bom.json', undefined),
+    [3],
+    'should strip BOM before parsing the file.'
   );
 
   t.throws(function() {

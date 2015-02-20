@@ -1,6 +1,6 @@
 {
   "name": "read-json-sync",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Read and parse a JSON file synchronously",
   "repository": "shinnn/read-json-sync",
   "author": {

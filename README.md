@@ -7,35 +7,34 @@
 [![Dependency Status](https://img.shields.io/david/shinnn/read-json-sync.svg?label=deps)](https://david-dm.org/shinnn/read-json-sync)
 [![devDependency Status](https://img.shields.io/david/dev/shinnn/read-json-sync.svg?label=devDeps)](https://david-dm.org/shinnn/read-json-sync#info=devDependencies)
 
-A [Node](http://nodejs.org/) module to read and parse a JSON file synchronously
+A [Node](https://nodejs.org/) module to read and parse a JSON file synchronously
 
 ```javascript
-var readJsonSync = require('read-json-sync');
+const readJsonSync = require('read-json-sync');
 
-readJsonSync('package.json');
-//=> {name: 'read-json-sync', version: '1.0.0', ...}
+readJsonSync('package.json'); //=> {name: 'read-json-sync', version: '1.0.0', ...}
 ```
 
-Node's built-in [`require`](http://nodejs.org/api/globals.html#globals_require) can do almost the same thing, but this module doesn't [cache](http://nodejs.org/api/modules.html#modules_caching) results.
+Node's built-in [`require`](https://nodejs.org/api/globals.html#globals_require) can do almost the same thing, but this module doesn't [cache](https://nodejs.org/api/modules.html#modules_caching) results.
 
 ## Installation
 
 [Use npm](https://docs.npmjs.com/cli/install).
 
-```sh
+```
 npm install read-json-sync
 ```
 
 ## API
 
 ```javascript
-var readJsonSync = require('read-json-sync');
+const readJsonSync = require('read-json-sync');
 ```
 
 ### readJsonSync(*filePath* [, *options*])
 
 *filePath*: `String` (path to a JSON file)  
-*options*: `Object` ([`fs.readFile`](http://nodejs.org/api/fs.html#fs_fs_readfile_filename_options_callback) options)  
+*options*: `Object` ([`fs.readFile`](https://nodejs.org/api/fs.html#fs_fs_readfile_filename_options_callback) options)  
 Return: `Object` (parsed JSON data)
 
 ## License

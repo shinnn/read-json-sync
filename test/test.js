@@ -1,9 +1,9 @@
 'use strict';
 
-var readJsonSync = require('..');
-var test = require('tape');
+const readJsonSync = require('..');
+const test = require('tape');
 
-test('readJsonSync()', function(t) {
+test('readJsonSync()', t => {
   t.plan(9);
 
   t.equal(readJsonSync.name, 'readJsonSync', 'should have a function name.');
@@ -22,23 +22,33 @@ test('readJsonSync()', function(t) {
     'should strip BOM before parsing the file.'
   );
 
-  t.throws(function() {
-    readJsonSync();
-  }, /TypeError.*path/, 'should throw an error when it takes no arguments.');
+  t.throws(
+    () => readJsonSync(),
+    /TypeError.*path/,
+    'should throw an error when it takes no arguments.'
+  );
 
-  t.throws(function() {
-    readJsonSync('package.json', true);
-  }, /Bad/, 'should throw an error when it takes invalid fs.readFile option.');
+  t.throws(
+    () => readJsonSync('package.json', true),
+    /Bad/,
+    'should throw an error when it takes invalid fs.readFile option.'
+  );
 
-  t.throws(function() {
-    readJsonSync('foo', null);
-  }, /ENOENT/, 'should throw an error when the file doesn\'t exist.');
+  t.throws(
+    () => readJsonSync('foo', null),
+    /ENOENT/,
+    'should throw an error when the file doesn\'t exist.'
+  );
 
-  t.throws(function() {
-    readJsonSync('node_modules', {});
-  }, /EISDIR/, 'should throw an error when the path is a directory.');
+  t.throws(
+    () => readJsonSync('node_modules', {}),
+    /EISDIR/,
+    'should throw an error when the path is a directory.'
+  );
 
-  t.throws(function() {
-    readJsonSync(__filename, 'utf8');
-  }, /SyntaxError/, 'should throw an error when it fails to parse the file.');
+  t.throws(
+    () => readJsonSync(__filename, 'utf8'),
+    /SyntaxError/,
+    'should throw an error when it fails to parse the file.'
+  );
 });

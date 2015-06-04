@@ -3,22 +3,14 @@
   "version": "1.1.0",
   "description": "Read and parse a JSON file synchronously",
   "repository": "shinnn/read-json-sync",
-  "author": {
-    "name": "Shinnosuke Watanabe",
-    "url": "https://github.com/shinnn"
-  },
+  "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
     "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json index.js test/test.js",
     "test": "node --harmony_arrow_functions test/test.js | tap-spec",
     "coverage": "node --harmony_arrow_functions node_modules/.bin/istanbul cover test/test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/shinnn/read-json-sync/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "files": [
     "index.js"
   ],
@@ -31,20 +23,14 @@
     "sync"
   ],
   "dependencies": {
-    "graceful-fs": "^3.0.6"
+    "graceful-fs": "^3.0.8"
   },
   "devDependencies": {
     "@shinnn/eslintrc-node": "^1.0.2",
-    "eslint": "^0.20.0",
-    "istanbul": "^0.3.13",
+    "eslint": "^0.22.1",
+    "istanbul": "^0.3.14",
     "istanbul-coveralls": "^1.0.2",
-    "tap-spec": "^3.0.0",
+    "tap-spec": "^4.0.0",
     "tape": "^4.0.0"
-  },
-  "jscsConfig": {
-    "preset": "google",
-    "maximumLineLength": 98,
-    "requireBlocksOnNewline": true,
-    "validateLineBreaks": "LF"
   }
 }

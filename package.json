@@ -6,8 +6,8 @@
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
     "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json index.js test/test.js",
-    "test": "node --harmony_arrow_functions test/test.js | tap-spec",
-    "coverage": "node --harmony_arrow_functions node_modules/.bin/istanbul cover test/test.js",
+    "test": "node --strong_mode test/test.js | tap-spec",
+    "coverage": "node --strong_mode node_modules/.bin/istanbul cover test/test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
   "license": "MIT",
@@ -29,7 +29,6 @@
     "@shinnn/eslintrc-node": "^1.0.2",
     "eslint": "^0.22.1",
     "istanbul": "^0.3.14",
-    "istanbul-coveralls": "^1.0.2",
     "tap-spec": "^4.0.0",
     "tape": "^4.0.0"
   }

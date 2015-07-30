@@ -30,7 +30,7 @@ test('readJsonSync()', t => {
 
   t.throws(
     () => readJsonSync('package.json', true),
-    /Bad/,
+    /TypeError/,
     'should throw an error when it takes invalid fs.readFile option.'
   );
 

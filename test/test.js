@@ -1,4 +1,4 @@
-'use strict';
+'use strong';
 
 const readJsonSync = require('..');
 const test = require('tape');

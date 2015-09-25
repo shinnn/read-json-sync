@@ -6,9 +6,8 @@
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
     "pretest": "eslint --config @shinnn/node-legacy index.js test/test.js",
-    "test": "node --strong_mode test/test.js | tap-spec",
-    "coverage": "node --strong_mode node_modules/.bin/istanbul cover test/test.js",
-    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+    "test": "node --strong_mode --throw-deprecation --track-heap-objects test/test.js | tap-spec",
+    "coverage": "node --strong_mode node_modules/.bin/istanbul cover test/test.js"
   },
   "license": "MIT",
   "files": [

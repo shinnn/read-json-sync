@@ -5,7 +5,7 @@
   "repository": "shinnn/read-json-sync",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
-    "pretest": "eslint --config @shinnn/node-legacy index.js test/test.js",
+    "pretest": "eslint --fix --format=codeframe index.js test/test.js",
     "test": "node --throw-deprecation --track-heap-objects test/test.js | tap-spec",
     "coverage": "istanbul cover test/test.js"
   },
@@ -25,13 +25,16 @@
     "sync"
   ],
   "dependencies": {
-    "graceful-fs": "^4.1.6"
+    "graceful-fs": "^4.1.11"
   },
   "devDependencies": {
-    "@shinnn/eslint-config-node-legacy": "^3.0.0",
-    "eslint": "^3.4.0",
+    "@shinnn/eslint-config-node": "^4.0.2",
+    "eslint": "^4.3.0",
     "istanbul": "^0.4.5",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
+    "tape": "^4.7.0"
+  },
+  "eslintConfig": {
+    "extends": "@shinnn/node"
   }
 }

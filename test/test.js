@@ -4,10 +4,6 @@ const readJsonSync = require('..');
 const test = require('tape');
 
 test('readJsonSync()', t => {
-  t.plan(9);
-
-  t.equal(readJsonSync.name, 'readJsonSync', 'should have a function name.');
-
   t.deepEqual(readJsonSync('test/fixture.json'), [1], 'should read and parse a JSON file.');
 
   t.deepEqual(
@@ -24,7 +20,13 @@ test('readJsonSync()', t => {
 
   t.throws(
     () => readJsonSync(),
-    /TypeError.*path/,
+    /^RangeError.*Expected 1 or 2 arguments \(path\[, options]\), but got no arguments\./,
+    'should throw an error when it takes no arguments.'
+  );
+
+  t.throws(
+    () => readJsonSync('a', 'b', 'c'),
+    /^RangeError.*Expected 1 or 2 arguments \(path\[, options]\), but got 3 arguments\./,
     'should throw an error when it takes no arguments.'
   );
 
@@ -51,4 +53,6 @@ test('readJsonSync()', t => {
     /SyntaxError/,
     'should throw an error when it fails to parse the file.'
   );
+
+  t.end();
 });

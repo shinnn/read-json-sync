@@ -2,7 +2,6 @@
 
 [![NPM version](https://img.shields.io/npm/v/read-json-sync.svg)](https://www.npmjs.com/package/read-json-sync)
 [![Build Status](https://travis-ci.org/shinnn/read-json-sync.svg?branch=master)](https://travis-ci.org/shinnn/read-json-sync)
-[![Build status](https://ci.appveyor.com/api/projects/status/t7sjgpku9on12d32?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/read-json-sync)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/read-json-sync.svg)](https://david-dm.org/shinnn/read-json-sync)
 
 A [Node.js](https://nodejs.org/) module to read and parse a [JSON](http://www.json.org/) file synchronously

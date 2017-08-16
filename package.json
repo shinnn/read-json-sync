@@ -6,8 +6,7 @@
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
     "pretest": "eslint --fix --format=codeframe index.js test/test.js",
-    "test": "node --throw-deprecation --track-heap-objects test/test.js | tap-spec",
-    "coverage": "istanbul cover test/test.js"
+    "test": "istanbul cover test/test.js"
   },
   "license": "CC0-1.0",
   "files": [
@@ -31,7 +30,6 @@
     "@shinnn/eslint-config-node": "^4.0.2",
     "eslint": "^4.4.1",
     "istanbul": "^0.4.5",
-    "tap-spec": "^4.1.1",
     "tape": "^4.8.0"
   },
   "eslintConfig": {

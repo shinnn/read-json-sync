@@ -1,11 +1,6 @@
 sudo: false
-git:
-  depth: 1
-branches:
-  except: /^v\d/
 language: node_js
 node_js: node
 after_script:
   - npm install coveralls
-  - npm run-script coverage
   - cat ./coverage/lcov.info | node node_modules/.bin/coveralls

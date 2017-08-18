@@ -1,6 +1,6 @@
 # read-json-sync
 
-[![NPM version](https://img.shields.io/npm/v/read-json-sync.svg)](https://www.npmjs.com/package/read-json-sync)
+[![npm version](https://img.shields.io/npm/v/read-json-sync.svg)](https://www.npmjs.com/package/read-json-sync)
 [![Build Status](https://travis-ci.org/shinnn/read-json-sync.svg?branch=master)](https://travis-ci.org/shinnn/read-json-sync)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/read-json-sync.svg)](https://david-dm.org/shinnn/read-json-sync)
 
@@ -28,11 +28,11 @@ npm install read-json-sync
 const readJsonSync = require('read-json-sync');
 ```
 
-### readJsonSync(*filePath* [, *options*])
+### readJsonSync(*path* [, *options*])
 
-*filePath*: `String` (path to a JSON file)  
-*options*: `Object` ([`fs.readFile`](https://nodejs.org/api/fs.html#fs_fs_readfile_filename_options_callback) options)  
-Return: `Object` (parsed [JSON](https://tools.ietf.org/html/rfc7159) data)
+*path*: `string` [`Buffer`](https://nodejs.org/api/buffer.html#buffer_class_buffer) [`URL`](https://nodejs.org/api/url.html#url_class_url) (JSON filename) or `integer` (file descriptor)  
+*options*: `Object` ([`fs.readFile`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback) options)  
+Return: `any` (parsed [JSON](https://tools.ietf.org/html/rfc7159) data)
 
 ## License
 

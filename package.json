@@ -1,6 +1,6 @@
 {
   "name": "read-json-sync",
-  "version": "2.0.0-0",
+  "version": "2.0.0-1",
   "description": "Read and parse a JSON file synchronously",
   "repository": "shinnn/read-json-sync",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.2",
-    "eslint": "^4.4.1",
+    "eslint": "^4.6.1",
     "istanbul": "^0.4.5",
     "tape": "^4.8.0"
   },

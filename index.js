@@ -11,5 +11,7 @@ module.exports = function readJsonSync(...args) {
     } arguments.`);
   }
 
-  return JSON.parse(readFileSync(...args).toString().replace(/^\ufeff/g, ''));
+  const str = readFileSync(...args).toString();
+
+  return JSON.parse(str.charCodeAt(0) === 65279 ? /* 0xFEFF */ str.slice(1) : str);
 };

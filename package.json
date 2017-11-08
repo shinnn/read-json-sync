@@ -5,7 +5,8 @@
   "repository": "shinnn/read-json-sync",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
-    "pretest": "eslint --fix --format=codeframe index.js test/test.js",
+    "bench": "node benchmark/runner string-slice && node benchmark/runner string-replace && node benchmark/runner buffer-string-slice",
+    "pretest": "eslint --fix --format=codeframe benchmark index.js test",
     "test": "istanbul cover test/test.js"
   },
   "license": "CC0-1.0",
@@ -28,7 +29,8 @@
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.2",
-    "eslint": "^4.6.1",
+    "chalk": "^2.3.0",
+    "eslint": "^4.10.0",
     "istanbul": "^0.4.5",
     "tape": "^4.8.0"
   },

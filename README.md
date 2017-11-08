@@ -12,11 +12,11 @@ const readJsonSync = require('read-json-sync');
 readJsonSync('package.json'); //=> {name: 'read-json-sync', version: '1.0.0', ...}
 ```
 
-Node.js built-in [`require`](https://nodejs.org/api/globals.html#globals_require) can do almost the same thing, but this module doesn't [cache](https://nodejs.org/api/modules.html#modules_caching) results.
+Node.js built-in [`require`](https://nodejs.org/api/globals.html#globals_require) and [`import`](https://nodejs.org/api/esm.html#esm_interop_with_existing_modules) can do almost the same thing, but this module doesn't [cache](https://nodejs.org/api/modules.html#modules_caching) results.
 
 ## Installation
 
-[Use npm](https://docs.npmjs.com/cli/install).
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/getting-started/what-is-npm).
 
 ```
 npm install read-json-sync
@@ -31,8 +31,18 @@ const readJsonSync = require('read-json-sync');
 ### readJsonSync(*path* [, *options*])
 
 *path*: `string` [`Buffer`](https://nodejs.org/api/buffer.html#buffer_class_buffer) [`URL`](https://nodejs.org/api/url.html#url_class_url) (JSON filename) or `integer` (file descriptor)  
-*options*: `Object` ([`fs.readFile`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback) options)  
+*options*: `Object` `string` ([`fs.readFile`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback) options or an encoding of the file)  
 Return: `any` (parsed [JSON](https://tools.ietf.org/html/rfc7159) data)
+
+It automatically ignores the leading [byte order mark](https://www.unicode.org/faq/utf_bom.html).
+
+```javascript
+// with-bom.json: '\uFEFF{"a": 1}'
+
+JSON.parse('\uFEFF{"a": 1}'); // throws a SyntaxError
+
+readJsonSync('with-bom.json'); //=> {a: 1}
+```
 
 ## License
 

@@ -1,6 +1,4 @@
 sudo: false
 language: node_js
 node_js: node
-after_script:
-  - npm install coveralls
-  - cat ./coverage/lcov.info | node node_modules/.bin/coveralls
+after_script: cat coverage/lcov.info | npx coveralls

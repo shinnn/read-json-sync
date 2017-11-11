@@ -27,17 +27,47 @@ test('readJsonSync()', t => {
   t.throws(
     () => readJsonSync('a', 'b', 'c'),
     /^RangeError.*Expected 1 or 2 arguments \(path\[, options]\), but got 3 arguments\./,
-    'should throw an error when it takes no arguments.'
+    'should throw an error when it takes too many arguments.'
   );
 
   t.throws(
-    () => readJsonSync('package.json', true),
+    () => readJsonSync('package.json', false),
     /TypeError/,
     'should throw an error when it takes invalid fs.readFile option.'
   );
 
   t.throws(
-    () => readJsonSync('foo', null),
+    () => readJsonSync('package.json', null),
+    /^TypeError.*read-json-sync expected the encoding option to be a <string> /,
+    'should throw an error when it takes `null` as its second argument.'
+  );
+
+  t.throws(
+    () => readJsonSync('package.json', {encoding: false}),
+    /to convert file contents from <Buffer> to <string> before parsing it as JSON.*false was provided/,
+    'should throw an error when it takes a non-string encoding option.'
+  );
+
+  t.throws(
+    () => readJsonSync('package.json', ''),
+    /^TypeError.*read-json-sync expected the encoding option to be a non-empty <string>/,
+    'should throw an error when it takes an empty string as its second argument.'
+  );
+
+  t.throws(
+    () => readJsonSync('package.json', {encoding: ''}),
+    /^TypeError.* but '' \(empty string\) was provided\./,
+    'should throw an error when it takes an empty-string encoding option.'
+  );
+
+  t.throws(
+    () => readJsonSync('package.json', {encoding: 'utf7'}),
+    /The value "utf7" is invalid for option "encoding"/,
+    'should throw an error when it takes an invalid encoding option.'
+  );
+
+  t.throws(
+    () => readJsonSync('foo'),
     /ENOENT/,
     'should throw an error when the file doesn\'t exist.'
   );

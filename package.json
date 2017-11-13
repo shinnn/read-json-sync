@@ -9,7 +9,7 @@
     "pretest": "eslint --fix --format=codeframe benchmark index.js test",
     "test": "istanbul cover test/test.js"
   },
-  "license": "CC0-1.0",
+  "license": "ISC",
   "files": [
     "index.js"
   ],

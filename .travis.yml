@@ -1,4 +1,5 @@
+if: branch !~ ^v\d
 dist: xenial
 language: node_js
 node_js: node
-after_script: cat coverage/lcov.info | npx coveralls
+after_success: node_modules/.bin/nyc report | npx coveralls

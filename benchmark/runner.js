@@ -1,68 +1,73 @@
 'use strict';
 
-const {promisify} = require('util');
-const {readFile} = require('graceful-fs');
-const {performance} = require('perf_hooks');
+const {deepEqual} = require('assert').strict;
 const {join} = require('path');
-const {deepEqual} = require('assert');
+const {performance, PerformanceObserver} = require('perf_hooks');
+const {promisify} = require('util');
+const {readFile} = require('fs');
 
 const {green, cyan} = require('chalk');
 
 const promisifiedReadFile = promisify(readFile);
 
 const fn = require(join(__dirname, process.argv[2]));
-const title = fn.title;
+const {title} = fn;
 
 const fixturePath = join(__dirname, '..', 'test', 'fixture.json');
 const fixturePathWithBom = join(__dirname, '..', 'test', 'fixture-bom.json');
+
 (async () => {
-  console.log(green.bold(title));
+	new PerformanceObserver((list, observer) => {
+		const [{name, duration}] = list.getEntries();
 
-  const [
-    fixtureBuffer,
-    fixtureString,
-    fixtureBufferWithBom,
-    fixtureStringWithBom
-  ] = await Promise.all([
-    [fixturePath],
-    [fixturePath, 'utf8'],
-    [fixturePathWithBom],
-    [fixturePathWithBom, 'utf8']
-  ].map(args => promisifiedReadFile(...args)));
+		if (name === 'sum') {
+			console.log(cyan(`TOTAL            ${duration}\n`));
+			observer.disconnect();
+			return;
+		}
 
-  deepEqual(fn(fixtureBuffer), [1]);
-  deepEqual(fn(fixtureString), [1]);
-  deepEqual(fn(fixtureBufferWithBom), [3]);
-  deepEqual(fn(fixtureStringWithBom, 'utf8'), [3]);
+		console.log(`${name} ${duration}`);
+	}).observe({entryTypes: ['measure']});
+	console.log(green.bold(title));
 
-  performance.mark('start');
+	const [
+		fixtureBuffer,
+		fixtureString,
+		fixtureBufferWithBom,
+		fixtureStringWithBom
+	] = await Promise.all([
+		[fixturePath],
+		[fixturePath, 'utf8'],
+		[fixturePathWithBom],
+		[fixturePathWithBom, 'utf8']
+	].map(args => promisifiedReadFile(...args)));
 
-  for (const [fixtureName, fixture] of new Map([
-    ['buffer           ', fixtureBuffer],
-    ['string           ', fixtureString],
-    ['buffer with BOM  ', fixtureBufferWithBom],
-    ['string with BOM  ', fixtureStringWithBom]
-  ])) {
-    const marks = [`${fixtureName} start`, `${fixtureName} end`];
-    let i = 1500000;
+	deepEqual(fn(fixtureBuffer), [1]);
+	deepEqual(fn(fixtureString), [1]);
+	deepEqual(fn(fixtureBufferWithBom), [3]);
+	deepEqual(fn(fixtureStringWithBom, 'utf8'), [3]);
 
-    performance.mark(marks[0]);
+	performance.mark('start');
 
-    while (i--) {
-      fn(fixture);
-    }
+	for (const [fixtureName, fixture] of new Map([
+		['buffer           ', fixtureBuffer],
+		['string           ', fixtureString],
+		['buffer with BOM  ', fixtureBufferWithBom],
+		['string with BOM  ', fixtureStringWithBom]
+	])) {
+		const marks = [`${fixtureName} start`, `${fixtureName} end`];
+		let i = 1500000;
 
-    performance.mark(marks[1]);
-    performance.measure(fixtureName, ...marks);
-    console.log(`${fixtureName} ${performance.getEntriesByName(fixtureName)[0].duration}`);
-    performance.clearMeasures(fixtureName);
+		performance.mark(marks[0]);
 
-    for (const mark of marks) {
-      performance.clearMarks(mark);
-    }
-  }
+		while (i--) {
+			fn(fixture);
+		}
 
-  performance.mark('end');
-  performance.measure('sum', 'start', 'end');
-  console.log(cyan(`TOTAL            ${performance.getEntriesByName('sum')[0].duration}\n`));
+		performance.mark(marks[1]);
+		performance.measure(fixtureName, ...marks);
+	}
+
+	performance.mark('end');
+	performance.measure('sum', 'start', 'end');
 })();

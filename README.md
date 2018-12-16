@@ -1,10 +1,10 @@
 # read-json-sync
 
 [![npm version](https://img.shields.io/npm/v/read-json-sync.svg)](https://www.npmjs.com/package/read-json-sync)
-[![Build Status](https://travis-ci.org/shinnn/read-json-sync.svg?branch=master)](https://travis-ci.org/shinnn/read-json-sync)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/read-json-sync.svg)](https://david-dm.org/shinnn/read-json-sync)
+[![Build Status](https://travis-ci.com/shinnn/read-json-sync.svg?branch=master)](https://travis-ci.com/shinnn/read-json-sync)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/read-json-sync.svg)](https://coveralls.io/github/shinnn/read-json-sync)
 
-A [Node.js](https://nodejs.org/) module to read and parse a [JSON](http://www.json.org/) file synchronously
+A [Node.js](https://nodejs.org/) module to read and parse a [JSON](https://json.org/) file synchronously
 
 ```javascript
 const readJsonSync = require('read-json-sync');
@@ -16,7 +16,7 @@ Node.js built-in [`require`](https://nodejs.org/api/globals.html#globals_require
 
 ## Installation
 
-[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/getting-started/what-is-npm).
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/about-npm/).
 
 ```
 npm install read-json-sync
@@ -34,7 +34,7 @@ const readJsonSync = require('read-json-sync');
 *options*: `Object` `string` ([`fs.readFile`](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback) options or an encoding of the file)  
 Return: `any` (parsed [JSON](https://tools.ietf.org/html/rfc7159) data)
 
-It automatically ignores the leading [byte order mark](https://www.unicode.org/faq/utf_bom.html).
+It automatically ignores the leading [byte order mark](https://unicode.org/faq/utf_bom.html).
 
 ```javascript
 // with-bom.json: '\uFEFF{"a": 1}'
@@ -46,4 +46,4 @@ readJsonSync('with-bom.json'); //=> {a: 1}
 
 ## License
 
-[ISC License](./LICENSE) © 2017 Shinnosuke Watanabe
+[ISC License](./LICENSE) © 2017 - 2018 Shinnosuke Watanabe
